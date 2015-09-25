@@ -1,0 +1,21 @@
+{
+    "name": "mrssoft/nss-connect",
+    "version": "1.0.0",
+    "description": "NovatorSiteServer direct connect",
+    "type": "yii2-extension",
+    "keywords": ["yii2","extension"],
+    "authors": [
+        {
+            "name": "Melnikov Ruslan",
+            "email": "mrs2000@inbox.ru"
+        }
+    ],
+    "require": {
+        "yiisoft/yii2": "*",
+    },
+    "autoload": {
+        "psr-4": {
+            "mrssoft\\nss_connect\\": ""
+        }
+    }
+}
