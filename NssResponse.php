@@ -1,6 +1,6 @@
 <?
 
-namespace mrssoft\nss_connect;
+namespace novatorgroup\nss_connect;
 
 class NssResponse
 {

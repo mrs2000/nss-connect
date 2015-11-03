@@ -1,6 +1,6 @@
 <?php
 
-namespace mrssoft\nss_connect;
+namespace novatorgroup\nss_connect;
 
 use Yii;
 use yii\base\Exception;
@@ -27,7 +27,7 @@ class NssDirect extends Object
      * Выполнить запрос
      * @param $command - команда
      * @param array $params - параметры команды
-     * @return string
+     * @return NssResponse
      * @throws Exception
      */
     public function request($command, $params = [])
@@ -51,7 +51,7 @@ class NssDirect extends Object
             CURLOPT_PORT => $this->port,
             CURLOPT_POSTFIELDS => $this->createBody($command, $params)
         ]);
-        $this->answer = curl_exec($ch);
+        $this->answer = @curl_exec($ch);
 
         if (curl_errno($ch) || empty($this->answer))
         {
