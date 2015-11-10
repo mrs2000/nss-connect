@@ -30,7 +30,7 @@ class NssDirect extends Object
      * @return NssResponse
      * @throws Exception
      */
-    public function request($command, $params = [])
+    public function request($command, array $params = [])
     {
         if (empty($this->ip))
         {
@@ -56,7 +56,8 @@ class NssDirect extends Object
         if (curl_errno($ch) || empty($this->answer))
         {
             $this->answer = new NssResponse();
-            $this->answer->error = curl_error($ch);
+            $this->answer->error = 'По техническим причинам функция недоступна. Попробуйте позже.';
+            Yii::error(curl_error($ch));
         }
         else
         {
@@ -78,7 +79,7 @@ class NssDirect extends Object
      * @param array $params - параметры команды
      * @return string
      */
-    private function createBody($command, $params = [])
+    private function createBody($command, array $params = [])
     {
         $doc = new \DOMDocument();
         $root = $doc->createElement('data');
