@@ -19,6 +19,16 @@ class NssDirect extends Object
     public $port;
 
     /**
+     * @var int
+     */
+    public $timeout = 120;
+
+    /**
+     * @var int
+     */
+    public $connectTimeout = 30;
+
+    /**
      * @var NssResponse
      */
     private $answer;
@@ -46,8 +56,8 @@ class NssDirect extends Object
         curl_setopt_array($ch, [
             CURLOPT_RETURNTRANSFER => 1,
             CURLOPT_PROXY => false,
-            CURLOPT_TIMEOUT => 60,
-            CURLOPT_CONNECTTIMEOUT => 30,
+            CURLOPT_TIMEOUT => $this->timeout,
+            CURLOPT_CONNECTTIMEOUT => $this->connectTimeout,
             CURLOPT_PORT => $this->port,
             CURLOPT_POSTFIELDS => $this->createBody($command, $params)
         ]);
