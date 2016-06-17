@@ -42,14 +42,12 @@ class NssDirect extends Object
      */
     public function request($command, array $params = [])
     {
-        if (empty($this->ip))
-        {
-            throw new Exception('Novator IP is empty');
+        if (empty($this->ip)) {
+            throw new Exception('Novator IP is empty.');
         }
 
-        if (empty($this->port))
-        {
-            throw new Exception('Novator Port is empty');
+        if (empty($this->port)) {
+            throw new Exception('Novator Port is empty.');
         }
 
         $ch = curl_init($this->ip);
@@ -63,17 +61,13 @@ class NssDirect extends Object
         ]);
         $this->answer = @curl_exec($ch);
 
-        if (curl_errno($ch) || empty($this->answer))
-        {
+        if (curl_errno($ch) || empty($this->answer)) {
             $this->answer = new NssResponse();
             $this->answer->error = 'По техническим причинам функция недоступна. Попробуйте позже.';
-            Yii::error(curl_error($ch));
-        }
-        else
-        {
+            Yii::error(curl_error($ch), 'nss-direct');
+        } else {
             $this->answer = @simplexml_load_string($this->answer);
-            if ($this->answer === false)
-            {
+            if ($this->answer === false) {
                 $this->answer = new NssResponse();
                 $this->answer->error = 'От сервера пришел неверный ответ.';
             }
@@ -94,8 +88,7 @@ class NssDirect extends Object
         $doc = new \DOMDocument();
         $root = $doc->createElement('data');
         $root->appendChild($doc->createElement('command', $command));
-        foreach ($params as $key => $value)
-        {
+        foreach ($params as $key => $value) {
             $param = $doc->createElement('param');
             $param->setAttribute('name', $key);
             $param->setAttribute('value', $value);
