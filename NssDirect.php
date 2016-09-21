@@ -2,8 +2,8 @@
 
 namespace novatorgroup\nss_connect;
 
-use Yii;
-use yii\base\Exception;
+use yii;
+use yii\base\InvalidParamException;
 use yii\base\Object;
 
 class NssDirect extends Object
@@ -38,16 +38,15 @@ class NssDirect extends Object
      * @param $command - команда
      * @param array $params - параметры команды
      * @return NssResponse
-     * @throws Exception
      */
     public function request($command, array $params = [])
     {
         if (empty($this->ip)) {
-            throw new Exception('Novator IP is empty.');
+            throw new InvalidParamException('IP not defined.');
         }
 
         if (empty($this->port)) {
-            throw new Exception('Novator Port is empty.');
+            throw new InvalidParamException('Port not defined.');
         }
 
         $ch = curl_init($this->ip);
