@@ -3,10 +3,10 @@
 namespace novatorgroup\nss_connect;
 
 use yii;
+use yii\base\BaseObject;
 use yii\base\InvalidParamException;
-use yii\base\Object;
 
-class NssDirect extends Object
+class NssDirect extends BaseObject
 {
     /**
      * @var string
